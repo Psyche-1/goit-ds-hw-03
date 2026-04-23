@@ -1,0 +1,19 @@
+[project]
+name = "cats-db"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Volodymyr Meleshchenko",email = "meleshchenkovolodymyr@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pymongo (>=4.17.0,<5.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "cats_db", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
