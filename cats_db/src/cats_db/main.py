@@ -114,13 +114,10 @@ def update_age_by_name(name: str, age: int) -> dict[str, str | int | list[str]]:
 
 def add_features_by_name(name: str, feature: str) -> dict[str, str | int | list[str]]:
     '''Append new feature to cat by name'''
-    cat = read_one(name)
-    if cat:
-        cat['features'].append(feature)
-        try:
-            db.cats.update_one({"name": name}, {"$set": cat})
-        except (WriteError, BulkWriteError) as e:
-            print(e)
+    try:
+        db.cats.update_one({"name": name}, {'$push': {'features': feature}})
+    except (WriteError, BulkWriteError) as e:
+        print(e)
     return read_one(name)
 
 # pprint(add_features_by_name('barsik', 'хропить'))
